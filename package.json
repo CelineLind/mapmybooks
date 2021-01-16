@@ -1,0 +1,25 @@
+{
+  "name": "mapmybooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CelineLind/mapmybooks.git"
+  },
+  "author": "celine lind",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CelineLind/mapmybooks/issues"
+  },
+  "homepage": "https://github.com/CelineLind/mapmybooks#readme",
+  "dependencies": {
+    "ol": "^6.5.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
