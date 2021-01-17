@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/CelineLind/mapmybooks#readme",
   "dependencies": {
-    "ol": "^6.5.0"
+    "ol": "^6.5.0",
+    "ol-geocoder": "^4.1.1"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.4"
