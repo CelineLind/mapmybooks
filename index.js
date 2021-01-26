@@ -1,24 +1,31 @@
 
 var allBooks = [
   {
-    title: "Book One",
-    author: "Author One",
-    ISBN: "One"
-  },
-  {
-    title: "Book Two",
-    author: "Author Two",
-    ISBN: "Two"
+    title: "A Song Below Water",
+    author: "Author",
+    ISBN: "ISBN One",
+    coord: [-13656028.909742799, 5703798.986450608],
+    address: "<span class=\"gcd-road\">Portland, Metro, Oregon, United States</span>"
   }
 ];
 
 var currentBook = {
-  title: "new",
-  author: "new",
-  ISBN: "new"
+    title: "New",
+    author: "New",
+    ISBN: "New",
+    coord: undefined,
+    address: undefined
 };
 
-((win, doc) => {
+//////// home page //////////////////////////
+const homePage = () => {
+  return 0;
+}
+
+
+//////// map marker page ////////////////////
+
+const mapPage = ((win, doc) => {
   const olview = new ol.View({
     center: [0, 0],
     zoom: 3,
@@ -55,11 +62,33 @@ var currentBook = {
   // Listen when an address is chosen
   geocoder.on('addresschosen', (evt) => {
     window.setTimeout(() => {
-      popup.show(evt.coordinate, evt.address.formatted); // evt.coordinate is the location coordinate, evt.address.formatted puts the marker text
+      popup.show(evt.coordinate, evt.address.formatted); // evt.coordinate is the location coordinate, evt.address.formatted puts the marker text inside <spans>
     }, 2000);
+    currentBook.coord = evt.coordinate;
+    currentBook.address = evt.address.formatted;
     allBooks.push(currentBook);
     console.log(allBooks);
+    displayMarkers(popup);
   });
 })(window, document);
 
-// popup.show(evt.coordinate, evt.address.formatted); this is what displays the markers on the map - I think
+function displayMarkers(popup){
+  for(i = 0; i < allBooks.length; i++){
+    // display
+  }
+}
+
+
+///////// selects page to display ///////////
+// homepage, create new map, (eventually: import map, kofi link, link to my website)
+
+var displaying = "homePage"; // set to homePage once ready
+
+// change via listening for button presses
+
+if (displaying == "mapPage"){
+  //mapPage;
+}
+else{
+  homePage;
+}
