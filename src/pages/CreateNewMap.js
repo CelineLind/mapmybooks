@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ol from 'ol-geocoder';
 
 ////// variables //////
 
@@ -30,6 +31,8 @@ export default function mapPage(){
       minZoom: 2,
       maxZoom: 20,
     });
+
+    console.log("one");
   
     const baseLayer = new ol.layer.Tile({
       source: new ol.source.OSM(),

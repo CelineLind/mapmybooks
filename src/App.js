@@ -17,7 +17,7 @@ export default function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
+        
 
         {/* the content */}
         <Switch>
@@ -31,7 +31,7 @@ export default function App() {
 
         </Switch>
 
-        <Footer />
+        
       </div>
     </Router>
   );
