@@ -37,27 +37,29 @@ var currentBook = {
     layers: [baseLayer],
   });
 
-  const popup = new ol.Overlay.Popup();
+  const popup = new ol.Overlay.Popup(); // the search bar container i think
 
   // Instantiate with some options and add the Control
   const geocoder = new Geocoder('nominatim', {
     provider: 'osm',
     targetType: 'text-input',
     lang: 'en',
-    placeholder: 'Search for ...',
+    placeholder: 'Search for a city or country',
     limit: 5,
     keepOpen: false,
   });
 
-  map.addControl(geocoder);
-  map.addOverlay(popup);
+  map.addControl(geocoder); // the search bar text interpreter
+  map.addOverlay(popup); // the search bar container
 
   // Listen when an address is chosen
   geocoder.on('addresschosen', (evt) => {
     window.setTimeout(() => {
-      popup.show(evt.coordinate, evt.address.formatted);
-    }, 3000);
+      popup.show(evt.coordinate, evt.address.formatted); // evt.coordinate is the location coordinate, evt.address.formatted puts the marker text
+    }, 2000);
     allBooks.push(currentBook);
     console.log(allBooks);
   });
 })(window, document);
+
+// popup.show(evt.coordinate, evt.address.formatted); this is what displays the markers on the map - I think
