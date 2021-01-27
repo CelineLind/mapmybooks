@@ -22,7 +22,7 @@ export default function App() {
         {/* the content */}
         <Switch>
             <Route exact path="/">
-                <Home />
+                <Home /> {/* this error can be ignored as it's just complaining that Home.js is empty */}
             </Route>
 
             <Route exact path="/create">
