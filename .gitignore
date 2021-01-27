@@ -6,6 +6,7 @@
 .pnp.js
 /dist
 .cache
+.eslintcache
 
 # testing
 /coverage

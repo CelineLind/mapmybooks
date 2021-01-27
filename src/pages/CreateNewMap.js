@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import ol from 'ol-geocoder';
+//import React, { useState, useEffect } from "react";
+import ol, {Geocoder} from 'ol-geocoder';
 
 ////// variables //////
 
