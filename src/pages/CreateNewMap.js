@@ -1,5 +1,5 @@
 //import React, { useState, useEffect } from "react";
-import ol, {Geocoder} from 'ol-geocoder';
+import {ol, Geocoder} from 'ol-geocoder';
 
 ////// variables //////
 
@@ -71,7 +71,6 @@ export default function mapPage(){
       console.log(allBooks);
     });
   })(window, document);
-
 };
 
 //////////////////////

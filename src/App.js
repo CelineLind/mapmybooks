@@ -8,7 +8,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // pages
 import Home from "./pages/Home";
-import CreateNewMap from "./pages/CreateNewMap";
+//import CreateNewMap from "./pages/CreateNewMap";
+import Testing from "./pages/Testing";
 // Import Map
 // Donations Link
 // My Website
@@ -17,7 +18,7 @@ export default function App() {
   return (
     <Router>
       <div className="App">
-        
+        <div id="mapHere"></div>
 
         {/* the content */}
         <Switch>
@@ -26,7 +27,7 @@ export default function App() {
             </Route>
 
             <Route exact path="/create">
-                <CreateNewMap />
+                <Testing />
             </Route>
 
         </Switch>
