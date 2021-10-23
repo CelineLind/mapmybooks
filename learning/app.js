@@ -2,10 +2,12 @@
 const todoInput = document.querySelector('.todo-input');
 const todoButton = document.querySelector('.todo-button');
 const todoList = document.querySelector('.todo-list');
+const filterOption = document.querySelector('.filter-todo');
 
 // Event Listeners
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
+filterOption.addEventListener('change', filterTodo);
 
 // Functions
 function addTodo(event){
@@ -20,6 +22,9 @@ function addTodo(event){
     newTodo.innerText = todoInput.value;
     newTodo.classList.add('todo-item');
     todoDiv.appendChild(newTodo); // place within div
+
+    // add todo to local storage
+    saveLocalTodos(todoInput.value);
 
     // checkmark button
     const completedButton = document.createElement('button');
@@ -56,4 +61,42 @@ function deleteCheck(event){
         const todo = item.parentElement;
         todo.classList.toggle('completed');
     }
+}
+
+function filterTodo(event){
+    const todos = todoList.childNodes;
+    todos.forEach(function(todo){
+        switch(event.target.value){
+            case "all":
+                todo.style.display = "flex";
+                break;
+            case "completed":
+                if(todo.classList.contains('completed')){
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+                break;
+            case "uncompleted":
+                if(!todo.classList.contains('completed')){
+                    todo.style.display = "flex";
+                } else {
+                    todo.style.display = "none";
+                }
+                break;
+        }
+    });
+}
+
+function saveLocalTodos(todo){
+    // check if a todos already exists in local storage
+    let todos;
+    if(localStorage.getItem('todos') === null){
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem('todos'));
+    }
+    // add item to todos array and save into local storage
+    todos.push(todo);
+    localStorage.setItem('todos', JSON.stringify(todos));
 }
