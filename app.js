@@ -26,21 +26,22 @@ function displaySearch(event){
         console.log(results); // this is blank ugh
     }
 
+    // create todo div
+    const listDiv = document.createElement('div');
+    listDiv.classList.add('book');
 
-    // // create todo div
-    // const listDiv = document.createElement('div');
-    // listDiv.classList.add('book');
+    const newBook = document.createElement('li');
+    // results.forEach(function(item){
+    //     // create li
+    //     newBook = document.createElement('li');
+    //     newBook.innerText = item;
+    //     newBook.classList.add('book-item');
+    //     listDiv.appendChild(newBook);
 
-    // // search for book according to bookInput text
-
-    // // create li
-    // const newBook = document.createElement('li');
-    // newBook.innerText = bookInput.value; // around here is where the api code will be
-    // newBook.classList.add('book-item');
-    // listDiv.appendChild(newBook);
-
-    // // append to list
-    // bookList.appendChild(listDiv);
+    //     // append to list
+    //     bookList.appendChild(listDiv);
+    // }
+    // )
 
     // clear book title input value
     bookInput.value = "";
