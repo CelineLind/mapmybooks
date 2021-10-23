@@ -20,10 +20,12 @@ function searchForBooks(event){
         // display an error if an empty search
     }
     else {
+        // console.log the search
+        console.log(bookURL + 'intitle:' + userSearch);
         // fetch data from bookURL + bookInput.value
-        fetch(bookURL + userSearch)
+        fetch(bookURL + 'intitle:' + userSearch)
             .then((res) => res.json())
-            .then(data => console.log(data));
+            .then(data => console.log(data.items))
     }
 
 
