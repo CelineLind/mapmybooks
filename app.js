@@ -1,19 +1,20 @@
 // Selectors
 const bookInput = document.querySelector('.booksearch-input');
 const searchButton = document.querySelector('.search-button');
-const bookList = document.querySelector('.book-list-output');
+const bookSearchList = document.querySelector('.book-search-output');
+const bookOutputList = document.querySelector('.book-list-output');
 var bookURL = "https://www.googleapis.com/books/v1/volumes?q=";
 
 // Event Listeners
 searchButton.addEventListener('click', displaySearch);
+bookSearchList.addEventListener('click', addToBookList);
 
 // Functions
-
 async function displaySearch(event){
     event.preventDefault(); // prevents the page refreshing on button click and form submitting
 
     // empty book list
-    bookList.innerHTML = "";
+    bookSearchList.innerHTML = "";
     var userSearch = bookInput.value; // what they've searched
     var results;
     var objects;
@@ -27,28 +28,22 @@ async function displaySearch(event){
         objects = results.items;
     }
 
-    // create todo div
+    // create list div
     const listDiv = document.createElement('div');
-    listDiv.classList.add('book');
+    listDiv.classList.add('book-search');
 
-    // display each search result to the screen
-    // TODO: add the first 5 results to a table/div with a button to "view more/next"
+    // display the search results as buttons (todo: style like a drop down)
     var newBook;
     objects.forEach(function(item){
-        // create li
-        // newBook = document.createElement('li');
-        // newBook.innerText = item.volumeInfo.title;
-        // newBook.classList.add('book-item');
-        // listDiv.appendChild(newBook);
 
         // create div
         newBook = document.createElement('button');
         newBook.innerText = item.volumeInfo.title;
-        newBook.classList.add('book-item');
+        newBook.classList.add('book-search-item');
         listDiv.appendChild(newBook);
 
         // append to list
-        bookList.appendChild(listDiv);
+        bookSearchList.appendChild(listDiv);
     }
     );
 
@@ -65,4 +60,24 @@ function searchForBooks(userSearch){
     return fetch(bookURL + 'intitle:' + userSearch)
         .then((res) => res.json())
         .then((responseJson) => {return responseJson});
+}
+
+function addToBookList(event){
+    const item = event.target;
+
+    console.log("item:");
+    console.log(item.innerText);
+
+    // create div
+    const outputDiv = document.createElement('div');
+    outputDiv.classList.add('book-list');
+
+    // create div
+    const newBook = document.createElement('li');
+    newBook.innerText = item.innerText;
+    newBook.classList.add('book-output-item');
+    outputDiv.appendChild(newBook);
+
+    // append to list
+    bookSearchList.appendChild(outputDiv);
 }
