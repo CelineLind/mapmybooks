@@ -78,6 +78,22 @@ function addToBookList(event){
     newBook.classList.add('book-output-item');
     outputDiv.appendChild(newBook);
 
+    // save to local storage
+    saveLocalBookList(item.innerText);
+
     // append to list
     bookSearchList.appendChild(outputDiv);
+}
+
+function saveLocalBookList(newBook){
+    // check if a book already exists in local storage
+    let myBookList;
+    if(localStorage.getItem('myBookList') === null){
+        myBookList = [];
+    } else {
+        myBookList = JSON.parse(localStorage.getItem('myBookList'));
+    }
+    // add item to myBookList array and save into local storage
+    myBookList.push(newBook);
+    localStorage.setItem('myBookList', JSON.stringify(myBookList));
 }
