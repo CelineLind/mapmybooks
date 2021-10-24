@@ -8,7 +8,7 @@ var bookURL = "https://www.googleapis.com/books/v1/volumes?q=";
 searchButton.addEventListener('click', displaySearch);
 
 // Functions
-function displaySearch(event){
+async function displaySearch(event){
     event.preventDefault(); // prevents the page refreshing on button click and form submitting
 
     // empty book list
@@ -20,10 +20,9 @@ function displaySearch(event){
         // display an error if an empty search
     }
     else {
-        var results = searchForBooks(userSearch);
-        // typeof results === 'undefined'
-        console.log("function done:");
-        console.log(results); // this is blank ugh
+        const results = await searchForBooks(userSearch);
+        console.log("function done.");
+        console.log(results);
     }
 
     // create todo div
@@ -51,9 +50,7 @@ function displaySearch(event){
 function searchForBooks(userSearch){
     console.log(bookURL + 'intitle:' + userSearch);
     // fetch data from bookURL + bookInput.value
-    var results;
-    fetch(bookURL + 'intitle:' + userSearch)
-        .then((res) => results = res.json())
-        .then(() => console.log(results))
-    return results;
+    return fetch(bookURL + 'intitle:' + userSearch)
+        .then((res) => res.json())
+        .then((responseJson) => {return responseJson});
 }
