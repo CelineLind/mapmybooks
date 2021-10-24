@@ -31,12 +31,18 @@ async function displaySearch(event){
     const listDiv = document.createElement('div');
     listDiv.classList.add('book');
 
+    // display each search result to the screen
+    // TODO: add the first 5 results to a table/div with a button to "view more/next"
     var newBook;
     objects.forEach(function(item){
-        console.log(item.volumeInfo.title);
-
         // create li
-        newBook = document.createElement('li');
+        // newBook = document.createElement('li');
+        // newBook.innerText = item.volumeInfo.title;
+        // newBook.classList.add('book-item');
+        // listDiv.appendChild(newBook);
+
+        // create div
+        newBook = document.createElement('button');
         newBook.innerText = item.volumeInfo.title;
         newBook.classList.add('book-item');
         listDiv.appendChild(newBook);
@@ -50,26 +56,11 @@ async function displaySearch(event){
     bookInput.value = "";
 }
 
-// function addToDiv(objects){
-//     var newBook = document.createElement('li');
-//     objects.forEach(function(item){
-//         console.log(item.volumeInfo.title);
-
-//         // create li
-//         newBook = document.createElement('li');
-//         newBook.innerText = item.volumeInfo.title;
-//         newBook.classList.add('book-item');
-//         listDiv.appendChild(newBook);
-
-//         // append to list
-//         bookList.appendChild(listDiv);
-//     }
-//     );
-// }
-
 // fetches the book details
 function searchForBooks(userSearch){
-    console.log(bookURL + 'intitle:' + userSearch);
+    // https://developers.google.com/books/docs/v1/using?authuser=2#WorkingVolumes
+    // https://stackoverflow.com/questions/11375173/google-books-api-returns-only-10-results
+    console.log(bookURL + 'intitle:' + userSearch); // displays first 10 at the moment, add button that displays next ten, etc
     // fetch data from bookURL + bookInput.value
     return fetch(bookURL + 'intitle:' + userSearch)
         .then((res) => res.json())

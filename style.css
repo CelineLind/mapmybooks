@@ -28,3 +28,12 @@ form button{
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+.book-item{
+    background: purple;
+    display: flex;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    margin: 0.5rem;
+}
