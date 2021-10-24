@@ -8,45 +8,66 @@ var bookURL = "https://www.googleapis.com/books/v1/volumes?q=";
 searchButton.addEventListener('click', displaySearch);
 
 // Functions
+
 async function displaySearch(event){
     event.preventDefault(); // prevents the page refreshing on button click and form submitting
 
     // empty book list
     bookList.innerHTML = "";
     var userSearch = bookInput.value; // what they've searched
+    var results;
+    var objects;
 
     // search for the book
     if (userSearch === " " || userSearch === null){
         // display an error if an empty search
     }
     else {
-        const results = await searchForBooks(userSearch);
-        console.log("function done.");
-        console.log(results);
+        results = await searchForBooks(userSearch);
+        objects = results.items;
     }
 
     // create todo div
     const listDiv = document.createElement('div');
     listDiv.classList.add('book');
 
-    const newBook = document.createElement('li');
-    // results.forEach(function(item){
-    //     // create li
-    //     newBook = document.createElement('li');
-    //     newBook.innerText = item;
-    //     newBook.classList.add('book-item');
-    //     listDiv.appendChild(newBook);
+    var newBook;
+    objects.forEach(function(item){
+        console.log(item.volumeInfo.title);
 
-    //     // append to list
-    //     bookList.appendChild(listDiv);
-    // }
-    // )
+        // create li
+        newBook = document.createElement('li');
+        newBook.innerText = item.volumeInfo.title;
+        newBook.classList.add('book-item');
+        listDiv.appendChild(newBook);
+
+        // append to list
+        bookList.appendChild(listDiv);
+    }
+    );
 
     // clear book title input value
     bookInput.value = "";
 }
 
-// maybe make the search books into a function down here
+// function addToDiv(objects){
+//     var newBook = document.createElement('li');
+//     objects.forEach(function(item){
+//         console.log(item.volumeInfo.title);
+
+//         // create li
+//         newBook = document.createElement('li');
+//         newBook.innerText = item.volumeInfo.title;
+//         newBook.classList.add('book-item');
+//         listDiv.appendChild(newBook);
+
+//         // append to list
+//         bookList.appendChild(listDiv);
+//     }
+//     );
+// }
+
+// fetches the book details
 function searchForBooks(userSearch){
     console.log(bookURL + 'intitle:' + userSearch);
     // fetch data from bookURL + bookInput.value
